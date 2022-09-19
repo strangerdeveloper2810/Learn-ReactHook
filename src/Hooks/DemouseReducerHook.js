@@ -33,6 +33,9 @@ const cartReducer = (state, action) => {
       return [...state];
   }
 };
+
+
+
 export default function DemouseReducerHook(props) {
   let [cart, dispatch] = useReducer(cartReducer, initialCart);
 
@@ -87,6 +90,7 @@ export default function DemouseReducerHook(props) {
           </div>
         ))}
       </div>
+
       <h3 className="text-center text-success">Giỏ Hàng</h3>
       <table className="table text-center">
         <thead>
