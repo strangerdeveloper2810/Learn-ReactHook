@@ -18,6 +18,13 @@ const cartReducer = (state, action) => {
         const itemCart = { ...action.item, quantity: 1 };
         cartUpdate.push(itemCart);
       }
+      Swal.fire(
+        {
+         title: "Success",
+         icon: "success",
+         text: "Thêm Sản Phẩm Thành Công!"
+        }
+       )
       return cartUpdate;
     }
 
@@ -25,20 +32,18 @@ const cartReducer = (state, action) => {
       // console.log(action);
       let cartUpdate = [...state];
       let result = cartUpdate.filter((itemCart) => itemCart.id !== action.id);
-      Swal.fire(
-       {
+      Swal.fire({
         title: "Success",
         icon: "success",
-        text: "Xóa Sản Phẩm Thành Công!"
-       }
-      )
-      
+        text: "Xóa Sản Phẩm Thành Công!",
+      });
+
       return result;
     }
 
     case "UP_AND_DOWN": {
       let cartUpdate = [...state];
-      let index = cartUpdate.findIndex((itemCart) => itemCart.id=== action.id);
+      let index = cartUpdate.findIndex((itemCart) => itemCart.id === action.id);
       if (index !== -1) {
         if (action.number === 1) {
           cartUpdate[index].quantity += 1;
@@ -47,10 +52,10 @@ const cartReducer = (state, action) => {
             cartUpdate[index].quantity -= 1;
           } else {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Số lượng tối thiểu là 1!',
-            })
+              icon: "error",
+              title: "Oops...",
+              text: "Số lượng tối thiểu là 1!",
+            });
           }
         }
       }
