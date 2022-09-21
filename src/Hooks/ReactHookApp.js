@@ -1,6 +1,8 @@
 import React from 'react'
 import ContextProvider from './Context/ContextProvider'
-import DemouseContextHook from './DemouseContextHook'
+import DemoReduxHooks from './DemoReduxHooks'
+
+// import DemouseContextHook from './DemouseContextHook'
 // import DemouseReducerHook from './DemouseReducerHook'
 // import DemouseRefHook from './DemouseRefHook'
 // import DemouseMemoHook from './DemouseMemoHook'
@@ -18,7 +20,8 @@ export default function ReactHookApp(props) {
         {/* <DemouseRefHook/> */}
         {/* <DemouseReducerHook/> */}
         {/* <DemouseContextHook/> */}
-        <DemouseContextHook/>
+        {/* <DemouseContextHook/> */}
+      <DemoReduxHooks/>
     </ContextProvider>
   )
 }
