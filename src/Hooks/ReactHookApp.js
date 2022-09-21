@@ -17,6 +17,7 @@ export default function ReactHookApp(props) {
         {/* <DemouseMemoHook/> */}
         {/* <DemouseRefHook/> */}
         {/* <DemouseReducerHook/> */}
+        {/* <DemouseContextHook/> */}
         <DemouseContextHook/>
     </ContextProvider>
   )

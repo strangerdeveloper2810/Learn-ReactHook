@@ -26,6 +26,16 @@ export default function DemouseContextHook(props) {
 
     dispatch(action);
   };
+
+  const UpAndDownCart = (id, number) => {
+    const action = {
+      type: "UP_AND_DOWN",
+      id,
+      number,
+    };
+    dispatch(action)
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -74,7 +84,26 @@ export default function DemouseContextHook(props) {
                   <td>{product.id}</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td>{product.quantity}</td>
+                  <td>
+                    <button
+                      className="btn btn-success me-2"
+                      onClick={() => {
+                        UpAndDownCart(product.id, 1);
+                      }}
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                    {product.quantity}
+                    <button
+                      className="btn btn-danger ms-2"
+                      onClick={() => {
+                        UpAndDownCart(product.id, -1);
+                      }}
+                    >
+                      -
+                    </button>
+                  </td>
                   <td>{product.quantity * product.price}</td>
                   <td>
                     <button
