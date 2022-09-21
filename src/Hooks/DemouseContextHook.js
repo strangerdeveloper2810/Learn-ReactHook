@@ -33,7 +33,7 @@ export default function DemouseContextHook(props) {
       id,
       number,
     };
-    dispatch(action)
+    dispatch(action);
   };
 
   return (
@@ -49,7 +49,7 @@ export default function DemouseContextHook(props) {
               />
               <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">{item.price}</p>
+                <p className="card-text">{item.price.toLocaleString()}</p>
                 <button
                   className="btn btn-primary"
                   onClick={() => {
@@ -83,7 +83,7 @@ export default function DemouseContextHook(props) {
                 <tr key={index}>
                   <td>{product.id}</td>
                   <td>{product.name}</td>
-                  <td>{product.price}</td>
+                  <td>{product.price.toLocaleString()}</td>
                   <td>
                     <button
                       className="btn btn-success me-2"
@@ -104,7 +104,7 @@ export default function DemouseContextHook(props) {
                       -
                     </button>
                   </td>
-                  <td>{product.quantity * product.price}</td>
+                  <td>{(product.quantity * product.price).toLocaleString()}</td>
                   <td>
                     <button
                       className="btn btn-danger"
