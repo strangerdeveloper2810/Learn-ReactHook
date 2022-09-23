@@ -8,26 +8,24 @@ export default function ListDice(props) {
     <div className="mt-5 ms-5">
       <div
         className="bg-white"
-        style={{ width: 300, height: 300, borderRadius: 150 }}
+        style={{ width: 300, height: 300, borderRadius: 150, paddingLeft: 10 }}
       >
         <div className="row">
-          <div className="col-12 text-center" style={{ marginTop: "75px" }}>
+          <div className="col-12 text-center" style={{ marginLeft: 75 }}>
             <Dice diceItem={arrDice[0]} />
           </div>
-
-          <div className="col-6 text-end mt-5">
+        </div>
+        <div className="row" style={{ marginTop: -20 }}>
+          <div className="col-4 text-end">
             <Dice diceItem={arrDice[1]} />
           </div>
-
-          <div className="col-6 mt-5">
+          <div className="col-4 text-end">
             <Dice diceItem={arrDice[2]} />
           </div>
         </div>
-
-        <button
-          className="btn btn-info position-relative top-50 start-50 fs-1 rounded-4 text-white"
-          style={{ marginLeft: "-40px", marginTop: "-45px" }}
-        >
+      </div>
+      <div style={{ marginLeft: "20%", marginTop: "5%" }}>
+        <button className="btn btn-success p2" style={{ fontSize: "25px" }}>
           Xốc
         </button>
       </div>
