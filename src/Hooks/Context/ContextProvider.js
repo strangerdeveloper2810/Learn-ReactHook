@@ -18,13 +18,11 @@ const cartReducer = (state, action) => {
         const itemCart = { ...action.item, quantity: 1 };
         cartUpdate.push(itemCart);
       }
-      Swal.fire(
-        {
-         title: "Success",
-         icon: "success",
-         text: "Thêm Sản Phẩm Thành Công!"
-        }
-       )
+      Swal.fire({
+        title: "Success",
+        icon: "success",
+        text: "Thêm Sản Phẩm Thành Công!",
+      });
       return cartUpdate;
     }
 
