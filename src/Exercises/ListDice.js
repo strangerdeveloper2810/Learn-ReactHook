@@ -11,21 +11,23 @@ export default function ListDice(props) {
         style={{ width: 300, height: 300, borderRadius: 150, paddingLeft: 10 }}
       >
         <div className="row">
-          <div className="col-12 text-center" style={{ marginLeft: 75 }}>
+          <div className="col-12 text-center" style={{ marginLeft: 88 }}>
             <Dice diceItem={arrDice[0]} />
           </div>
         </div>
-        <div className="row" style={{ marginTop: -20 }}>
+
+        <div className="row" style={{ marginTop: -20, marginLeft: 10}}>
           <div className="col-4 text-end">
             <Dice diceItem={arrDice[1]} />
           </div>
+          
           <div className="col-4 text-end">
             <Dice diceItem={arrDice[2]} />
           </div>
         </div>
       </div>
-      <div style={{ marginLeft: "20%", marginTop: "5%" }}>
-        <button className="btn btn-success p2" style={{ fontSize: "25px" }}>
+      <div style={{ marginLeft: "26%", marginTop: "10%" }}>
+        <button className="btn btn-success rounded-3 fs-4">
           Xốc
         </button>
       </div>

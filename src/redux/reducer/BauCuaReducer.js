@@ -19,7 +19,6 @@ const initialState = {
 const BauCuaReducer = (state = initialState, action) => {
   switch (action.type) {
     case BET_SCORE: {
-      console.log(action.itemClick);
       let arrBetUpdate = [...state.arrBet];
       const index = arrBetUpdate.findIndex(
         (item) => item.id === action.itemClick.id
