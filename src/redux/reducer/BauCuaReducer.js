@@ -39,16 +39,26 @@ const BauCuaReducer = (state = initialState, action) => {
       return { ...state };
     }
 
-    case PLAY_GAME : {
-     const arrDiceRandom = [];
-     for (let index = 0; index < 5; index ++) {
-      let numberRandom = Math.floor(Math.random() *6);
-      const diceRandom = state.arrBet[numberRandom];
-      arrDiceRandom.push(diceRandom);
-     }
+    case PLAY_GAME: {
+      const arrDiceRandom = [];
+      for (let index = 0; index < 3; index++) {
+        let numberRandom = Math.floor(Math.random() * 6);
+        const diceRandom = state.arrBet[numberRandom];
+        arrDiceRandom.push(diceRandom);
+      }
+      //  Xử lý tăng điểm thưởng
+      arrDiceRandom.forEach((diceRandom, index) => {
+        let indexOfArrBet = state.arrBet.findIndex(
+          (diceBet) => diceBet.id === diceRandom.id
+        );
 
-     state.arrDice = arrDiceRandom;
-      return {...state}
+        if (index !== -1) {
+          state.totalScore += state.arrBet[indexOfArrBet].scoreBet;
+        }
+      });
+
+      state.arrDice = arrDiceRandom;
+      return { ...state };
     }
 
     default:
