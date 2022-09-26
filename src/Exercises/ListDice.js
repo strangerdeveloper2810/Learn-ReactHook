@@ -1,9 +1,15 @@
 import React from "react";
 import Dice from "./Dice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { playgameAction } from "../redux/actions/BauCuaActions";
 
 export default function ListDice(props) {
   let arrDice = useSelector((state) => state.BauCuaReducer.arrDice);
+  const dispatch = useDispatch();
+
+  const handlePlayGame = () => {
+    dispatch(playgameAction());
+  };
   return (
     <div className="mt-5 ms-5">
       <div
@@ -16,18 +22,23 @@ export default function ListDice(props) {
           </div>
         </div>
 
-        <div className="row" style={{ marginTop: -20, marginLeft: 10}}>
+        <div className="row" style={{ marginTop: -20, marginLeft: 10 }}>
           <div className="col-4 text-end">
             <Dice diceItem={arrDice[1]} />
           </div>
-          
+
           <div className="col-4 text-end">
             <Dice diceItem={arrDice[2]} />
           </div>
         </div>
       </div>
       <div style={{ marginLeft: "26%", marginTop: "10%" }}>
-        <button className="btn btn-success rounded-3 fs-4">
+        <button
+          className="btn btn-success rounded-3 fs-4"
+          onClick={() => {
+            handlePlayGame();
+          }}
+        >
           Xốc
         </button>
       </div>
