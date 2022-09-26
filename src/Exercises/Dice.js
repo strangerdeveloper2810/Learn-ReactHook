@@ -7,46 +7,39 @@ export default function Dice(props) {
       <div className="scene">
         <div className="cube">
           <img
-            className="ml-3 cube__face front"
-            style={{ width: 50 }}
-            src={diceItem.hinhAnh}
+            src={diceItem.img}
             alt={diceItem.id}
+            className="cube__face front"
           />
+
           <img
-            className="ml-3 cube__face back"
-            style={{ width: 50 }}
             src="./gameBauCua/bau.png"
-            alt="bau"
+            alt="item__game"
+            className="cube__face back"
           />
+
           <img
-            className="ml-3 cube__face left"
-            style={{ width: 50 }}
             src="./gameBauCua/ga.png"
-            alt="ga"
+            alt="item__game"
+            className="cube__face left"
           />
+
           <img
-            className="ml-3 cube__face right"
-            style={{ width: 50 }}
             src="./gameBauCua/ca.png"
-            alt="ca"
+            alt="item__game"
+            className="cube__face right"
           />
+
           <img
-            className="ml-3 cube__face front"
-            style={{ width: 50 }}
             src="./gameBauCua/tom.png"
-            alt="tom"
+            alt="item__game"
+            className="cube__face top"
           />
+
           <img
-            className="ml-3 cube__face front"
-            style={{ width: 50 }}
             src="./gameBauCua/nai.png"
-            alt="nai"
-          />
-          <img
-            className="ml-3 cube__face front"
-            style={{ width: 50 }}
-            src="./gameBauCua/cua.png"
-            alt="cua"
+            alt="item__game"
+            className="cube__face bottom"
           />
         </div>
       </div>

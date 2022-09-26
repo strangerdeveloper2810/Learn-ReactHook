@@ -1,4 +1,4 @@
-import { BET_SCORE } from "../types/BauCuaTypes";
+import { BET_SCORE, PLAY_GAME } from "../types/BauCuaTypes";
 const initialState = {
   arrBet: [
     { id: "ga", img: "./gameBauCua/ga.png", scoreBet: 0 },
@@ -37,6 +37,18 @@ const BauCuaReducer = (state = initialState, action) => {
       }
       state.arrBet = arrBetUpdate;
       return { ...state };
+    }
+
+    case PLAY_GAME : {
+     const arrDiceRandom = [];
+     for (let index = 0; index < 5; index ++) {
+      let numberRandom = Math.floor(Math.random() *6);
+      const diceRandom = state.arrBet[numberRandom];
+      arrDiceRandom.push(diceRandom);
+     }
+
+     state.arrDice = arrDiceRandom;
+      return {...state}
     }
 
     default:
