@@ -1,4 +1,4 @@
-import { BET_SCORE, PLAY_GAME } from "../types/BauCuaTypes";
+import { BET_SCORE, PLAY_GAME,PLAY_AGAIN } from "../types/BauCuaTypes";
 const initialState = {
   arrBet: [
     { id: "ga", img: "./gameBauCua/ga.png", scoreBet: 0 },
@@ -46,6 +46,7 @@ const BauCuaReducer = (state = initialState, action) => {
         const diceRandom = state.arrBet[numberRandom];
         arrDiceRandom.push(diceRandom);
       }
+
       //  Xử lý tăng điểm thưởng
       arrDiceRandom.forEach((diceRandom, index) => {
         let indexOfArrBet = state.arrBet.findIndex(
@@ -57,8 +58,30 @@ const BauCuaReducer = (state = initialState, action) => {
         }
       });
 
+      // Xử lý hoàn tiền
+      state.arrBet.forEach((diceBet, index)=>{
+        let indexDiceRandom = arrDiceRandom.findIndex(diceRandom => diceRandom.id === diceBet.id);
+        if (indexDiceRandom !== -1) {
+          state.totalScore += diceBet.scoreBet;
+        }
+      });
+
+      // Làm mới game
+
+      state.arrBet = state.arrBet.map((diceBet, index)=>{
+        return {...diceBet, scoreBet: 0}
+      });
+
       state.arrDice = arrDiceRandom;
       return { ...state };
+    }
+
+    case PLAY_AGAIN: {
+      state.totalScore = 1000;
+      state.arrBet = state.arrBet.map((diceBet, index)=>{
+        return {...diceBet, scoreBet: 0}
+      });
+      return {...state}
     }
 
     default:
