@@ -1,4 +1,4 @@
-import { BET_SCORE, PLAY_GAME,PLAY_AGAIN } from "../types/BauCuaTypes";
+import { BET_SCORE, PLAY_GAME, PLAY_AGAIN } from "../types/BauCuaTypes";
 const initialState = {
   arrBet: [
     { id: "ga", img: "./gameBauCua/ga.png", scoreBet: 0 },
@@ -29,13 +29,15 @@ const BauCuaReducer = (state = initialState, action) => {
           arrBetUpdate[index].scoreBet += 100;
           state.totalScore -= 100;
         } else {
-          if (arrBetUpdate[index].scoreBet > 0) {
+          if (action.number === -1 && arrBetUpdate[index].scoreBet > 0) {
             arrBetUpdate[index].scoreBet -= 100;
             state.totalScore += 100;
           }
         }
       }
+
       state.arrBet = arrBetUpdate;
+
       return { ...state };
     }
 
@@ -59,8 +61,10 @@ const BauCuaReducer = (state = initialState, action) => {
       });
 
       // Xử lý hoàn tiền
-      state.arrBet.forEach((diceBet, index)=>{
-        let indexDiceRandom = arrDiceRandom.findIndex(diceRandom => diceRandom.id === diceBet.id);
+      state.arrBet.forEach((diceBet, index) => {
+        let indexDiceRandom = arrDiceRandom.findIndex(
+          (diceRandom) => diceRandom.id === diceBet.id
+        );
         if (indexDiceRandom !== -1) {
           state.totalScore += diceBet.scoreBet;
         }
@@ -68,8 +72,8 @@ const BauCuaReducer = (state = initialState, action) => {
 
       // Làm mới game
 
-      state.arrBet = state.arrBet.map((diceBet, index)=>{
-        return {...diceBet, scoreBet: 0}
+      state.arrBet = state.arrBet.map((diceBet, index) => {
+        return { ...diceBet, scoreBet: 0 };
       });
 
       state.arrDice = arrDiceRandom;
@@ -78,10 +82,10 @@ const BauCuaReducer = (state = initialState, action) => {
 
     case PLAY_AGAIN: {
       state.totalScore = 1000;
-      state.arrBet = state.arrBet.map((diceBet, index)=>{
-        return {...diceBet, scoreBet: 0}
+      state.arrBet = state.arrBet.map((diceBet, index) => {
+        return { ...diceBet, scoreBet: 0 };
       });
-      return {...state}
+      return { ...state };
     }
 
     default:
