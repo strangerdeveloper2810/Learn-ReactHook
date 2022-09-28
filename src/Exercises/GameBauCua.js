@@ -3,6 +3,8 @@ import GameScore from "./GameScore";
 import ListDice from "./ListDice";
 import ListItemGame from "./ListItemGame";
 import "./assets/CSS/ExGame.css";
+
+
 export default function GameBauCua(props) {
   return (
     <div className="container-fluid" id="exGame">
@@ -16,6 +18,7 @@ export default function GameBauCua(props) {
           <ListDice />
         </div>
       </div>
+     
     </div>
   );
 }
