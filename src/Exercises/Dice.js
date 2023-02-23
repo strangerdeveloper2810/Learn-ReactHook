@@ -16,12 +16,7 @@ export default function Dice(props) {
     },
     reset: true,
   }));
-  setSpring({ xyz: [360, 360, 360] });
-  
-  // setSpring.start();
-  // setSpring.set({ xyz: [360, 360, 360] })
-
-  
+  setSpring.start({ xyz: [360, 360, 360] });
 
   return (
     <Fragment>
