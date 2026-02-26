@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm --filter @baucua/client build",
+  "buildCommand": "pnpm --filter @baucua/client build && ls -la packages/client/ && ls -la packages/client/build/",
   "installCommand": "pnpm install",
   "outputDirectory": "packages/client/build",
   "framework": null
