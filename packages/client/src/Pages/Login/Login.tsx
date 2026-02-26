@@ -1,24 +1,24 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import useAuthStore from "../../store/useAuthStore";
-import "../../assets/CSS/ExGame.css";
+import { useState, FormEvent } from 'react';
+import { useNavigate } from 'react-router';
+import { useAuthStore } from '../../store/useAuthStore';
+import '../../assets/CSS/ExGame.css';
 
 export default function Login() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const loginAsGuest = useAuthStore((s) => s.loginAsGuest);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     loginAsGuest(name.trim());
-    navigate("/", { replace: true });
+    navigate('/lobby', { replace: true });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden" id="exGame">
       {/* Floating dice background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {["🎲", "🦐", "🦀", "🐓", "🐟", "🦌", "🍐"].map((emoji, i) => (
+        {['🎲', '🦐', '🦀', '🐓', '🐟', '🦌', '🍐'].map((emoji, i) => (
           <span
             key={i}
             className="absolute text-4xl sm:text-5xl opacity-15 select-none"
@@ -45,19 +45,20 @@ export default function Login() {
           <div className="px-6 py-8 sm:px-10 sm:py-12">
             {/* Logo */}
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full mb-4"
+              <div
+                className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full mb-4"
                 style={{
-                  background: "radial-gradient(circle at 40% 35%, #c0392b, #922b21 50%, #641e16)",
-                  boxShadow: "0 0 30px rgba(192, 57, 43, 0.4), inset 0 -3px 8px rgba(0,0,0,0.3)",
+                  background: 'radial-gradient(circle at 40% 35%, #c0392b, #922b21 50%, #641e16)',
+                  boxShadow: '0 0 30px rgba(192, 57, 43, 0.4), inset 0 -3px 8px rgba(0,0,0,0.3)',
                 }}
               >
                 <span className="text-4xl sm:text-5xl">🎲</span>
               </div>
               <h1 className="text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-yellow-400 to-amber-600 font-bold tracking-wide leading-tight">
-                BẦU CUA
+                BẦU CUA ONLINE
               </h1>
               <p className="text-white/50 text-sm sm:text-base mt-1 tracking-widest uppercase">
-                Cyberlearn
+                Multiplayer
               </p>
             </div>
 
@@ -79,10 +80,10 @@ export default function Login() {
                 type="submit"
                 className="w-full py-3 sm:py-3.5 rounded-xl font-bold text-base sm:text-lg tracking-wider transition-all cursor-pointer border-2 border-amber-300/50 text-white shadow-[0_4px_20px_rgba(255,165,0,0.3)] active:scale-[0.98]"
                 style={{
-                  background: "linear-gradient(135deg, #f59e0b, #d97706, #b45309)",
+                  background: 'linear-gradient(135deg, #f59e0b, #d97706, #b45309)',
                 }}
               >
-                {name.trim() ? `Vào chơi, ${name.trim()}!` : "Vào chơi với tư cách Khách"}
+                {name.trim() ? `Vào chơi, ${name.trim()}!` : 'Vào chơi với tư cách Khách'}
               </button>
             </form>
 

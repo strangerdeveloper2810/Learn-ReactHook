@@ -1,37 +1,16 @@
 {
-  "name": "learn-reacthook",
+  "name": "baucua-online",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@react-spring/web": "^9.7.3",
-    "@redux-devtools/extension": "^3.3.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "bootstrap": "^5.3.2",
-    "react": "^18.2.0",
-    "react-audio-player": "^0.17.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.2",
-    "react-router": "^7.13.1",
-    "redux": "^4.1.2",
-    "sweetalert2": "^11.4.33",
-    "web-vitals": "^2.1.4",
-    "zustand": "^5.0.11"
-  },
   "scripts": {
-    "dev": "NODE_ENV=development rspack serve",
-    "build": "NODE_ENV=production rspack build",
-    "start": "NODE_ENV=development rspack serve"
+    "dev": "nx run-many -t dev",
+    "dev:client": "nx run @baucua/client:dev",
+    "dev:server": "nx run @baucua/server:dev",
+    "build": "nx run-many -t build",
+    "clean": "rm -rf packages/*/dist packages/*/build node_modules/.cache"
   },
   "devDependencies": {
-    "@rspack/cli": "^1.7.6",
-    "@rspack/core": "^1.7.6",
-    "@rspack/plugin-react-refresh": "^1.6.1",
-    "@tailwindcss/postcss": "^4.2.1",
-    "postcss": "^8.5.6",
-    "postcss-loader": "^8.2.1",
-    "react-refresh": "^0.18.0",
-    "tailwindcss": "^4.2.1"
+    "nx": "^21.0.0",
+    "typescript": "^5.7.0"
   }
 }

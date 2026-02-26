@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === "production";
 module.exports = {
   mode: isProduction ? "production" : "development",
   devtool: isProduction ? false : "eval-cheap-module-source-map",
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "build"),
     filename: isProduction ? "static/js/[name].[contenthash:8].js" : "static/js/[name].js",
@@ -16,12 +16,37 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: [".js", ".jsx", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+    alias: {
+      "@baucua/shared": path.resolve(__dirname, "../shared/src"),
+    },
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "builtin:swc-loader",
+          options: {
+            jsc: {
+              parser: {
+                syntax: "typescript",
+                tsx: true,
+              },
+              transform: {
+                react: {
+                  runtime: "automatic",
+                  development: !isProduction,
+                  refresh: !isProduction,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "builtin:swc-loader",
@@ -92,7 +117,7 @@ module.exports = {
     css: true,
   },
   devServer: {
-    port: "auto",
+    port: 3000,
     hot: true,
     historyApiFallback: true,
     static: {
