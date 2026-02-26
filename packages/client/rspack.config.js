@@ -1,8 +1,9 @@
 const path = require("path");
-const { CopyRspackPlugin, HtmlRspackPlugin } = require("@rspack/core");
+const { CopyRspackPlugin, HtmlRspackPlugin, DefinePlugin } = require("@rspack/core");
 const ReactRefreshPlugin = require("@rspack/plugin-react-refresh");
 
 const isProduction = process.env.NODE_ENV === "production";
+const SOCKET_URL = process.env.SOCKET_URL || "http://localhost:3001";
 
 /** @type {import('@rspack/core').Configuration} */
 module.exports = {
@@ -96,6 +97,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new DefinePlugin({
+      __SOCKET_URL__: JSON.stringify(SOCKET_URL),
+    }),
     new HtmlRspackPlugin({
       template: "./public/index.html",
       favicon: "./public/favicon.ico",
