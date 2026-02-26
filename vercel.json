@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "bash scripts/build-vercel.sh",
+  "buildCommand": "cd packages/client && NODE_ENV=production npx rspack build && cd ../.. && cp -r packages/client/build ./build",
   "installCommand": "pnpm install",
   "outputDirectory": "build",
   "framework": null
