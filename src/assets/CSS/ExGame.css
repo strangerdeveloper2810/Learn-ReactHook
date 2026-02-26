@@ -1,36 +1,29 @@
-* {
-  box-sizing: border-box;
-}
-
 @font-face {
   font-family: "Pony";
   src: url(../fonts/Pony.ttf);
 }
 
-body {
-  font-family: sans-serif;
-}
-
 #exGame {
   font-family: "Pony";
-  min-height: 700px;
+  min-height: 100vh;
   background-image: url(../img/background1.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
 #exGame h1,
-h2,
-h3 {
+#exGame h2,
+#exGame h3 {
   font-family: "Pony";
 }
 
+/* 3D Dice */
 .scene {
   width: 50px;
   height: 50px;
-  margin-top: 80px;
-  perspective: 50px;
+  perspective: 100px;
 }
 
 .cube {
@@ -38,7 +31,6 @@ h3 {
   height: 50px;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform infinite;
   transform: translateZ(-25px);
 }
 
@@ -46,33 +38,44 @@ h3 {
   position: absolute;
   width: 50px;
   height: 50px;
-  border: 2px solid yellow;
-  line-height: 40px;
-  font-size: 5px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
+  border: 2px solid rgba(255, 215, 0, 0.7);
+  border-radius: 4px;
+  overflow: hidden;
+  backface-visibility: visible;
 }
 
-.front {
-  transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(25px);
-}
-.right {
-  transform: rotateY(90deg) rotateX(0deg) rotateZ(0deg) translateZ(25px);
-}
-.back {
-  transform: rotateY(180deg) rotateX(0deg) rotateZ(0deg) translateZ(25px);
-}
-.left {
-  transform: rotateY(-90deg) rotateX(0deg) rotateZ(0deg) translateZ(25px);
-}
-.top {
-  transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translateZ(25px);
-}
-.bottom {
-  transform: rotateX(-90deg) rotateY(0deg) rotate(0deg) translateZ(25px);
+.front  { transform: rotateY(0deg)    translateZ(25px); }
+.right  { transform: rotateY(90deg)   translateZ(25px); }
+.back   { transform: rotateY(180deg)  translateZ(25px); }
+.left   { transform: rotateY(-90deg)  translateZ(25px); }
+.top    { transform: rotateX(90deg)   translateZ(25px); }
+.bottom { transform: rotateX(-90deg)  translateZ(25px); }
+
+/* Login page floating emojis */
+@keyframes float-up {
+  0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.15; }
+  90%  { opacity: 0.15; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
 }
 
-label {
-  margin-right: 10px;
+/* Login card entrance */
+@keyframes card-enter {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Toast slide-in */
+@keyframes toast-in {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.9); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* Shake animation for dice cover */
+@keyframes shake {
+  0%   { transform: translate(-2px, -1px) rotate(-1deg); }
+  25%  { transform: translate(2px, 1px) rotate(1deg); }
+  50%  { transform: translate(-1px, 2px) rotate(-0.5deg); }
+  75%  { transform: translate(1px, -2px) rotate(0.5deg); }
+  100% { transform: translate(2px, -1px) rotate(1deg); }
 }

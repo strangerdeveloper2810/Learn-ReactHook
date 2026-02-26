@@ -1,16 +1,14 @@
-import React from "react";
 import ItemGame from "./ItemGame";
-import { useSelector } from "react-redux";
+import useBauCuaStore from "../../store/useBauCuaStore";
 
-export default function ListItemGame(props) {
-  let arrBet = useSelector((state) => state.BauCuaReducer.arrBet);
+export default function ListItemGame() {
+  const arrBet = useBauCuaStore((state) => state.arrBet);
 
-  const renderItemGame = () => {
-    return arrBet.map((item, index) => (
-      <div className="col-4" key={index}>
-        <ItemGame item={item} />
-      </div>
-    ));
-  };
-  return <div className="row mt-5">{renderItemGame()}</div>;
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+      {arrBet.map((item) => (
+        <ItemGame key={item.id} item={item} />
+      ))}
+    </div>
+  );
 }
