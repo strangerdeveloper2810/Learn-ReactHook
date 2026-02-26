@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router";
-import useBauCuaStore from "../../store/useBauCuaStore";
-import useAuthStore from "../../store/useAuthStore";
-import { useSpring, animated } from "@react-spring/web";
+import { useNavigate } from 'react-router';
+import useBauCuaStore from '../../store/useBauCuaStore';
+import { useAuthStore } from '../../store/useAuthStore';
+import { useSpring, animated } from '@react-spring/web';
 
 export default function GameScore() {
   const totalScore = useBauCuaStore((state) => state.totalScore);
@@ -13,10 +13,10 @@ export default function GameScore() {
   const styles = useSpring({
     loop: true,
     to: [
-      { opacity: 1, color: "#5771D7" },
-      { opacity: 0, color: "rgb(22,201,208)" },
+      { opacity: 1, color: '#5771D7' },
+      { opacity: 0, color: 'rgb(22,201,208)' },
     ],
-    from: { opacity: 0, color: "red" },
+    from: { opacity: 0, color: 'red' },
   });
 
   return (
@@ -45,7 +45,10 @@ export default function GameScore() {
 
         <button
           className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 hover:bg-white/20 active:scale-95 text-white/70 hover:text-white text-sm sm:text-base rounded-full cursor-pointer transition-all shadow-lg border border-white/10"
-          onClick={() => { logout(); navigate("/login", { replace: true }); }}
+          onClick={() => {
+            logout();
+            navigate('/login', { replace: true });
+          }}
         >
           Thoát
         </button>

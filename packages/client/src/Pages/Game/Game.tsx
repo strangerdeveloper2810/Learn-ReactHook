@@ -5,13 +5,13 @@ import { useRoomStore } from '../../store/useRoomStore';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useGameStore } from '../../store/useGameStore';
 import { getSocket } from '../../socket/client';
-import GameBoard from '../../components/GameBoard';
-import HostGameBoard from '../../components/HostGameBoard';
-import PlayerList from '../../components/PlayerList';
-import CountdownTimer from '../../components/CountdownTimer';
-import DiceResult from '../../components/DiceResult';
-import DiceShaker from '../../components/DiceShaker';
-import Toast from '../../components/Toast';
+import GameBoard from '../../Components/GameBoard';
+import HostGameBoard from '../../Components/HostGameBoard';
+import PlayerList from '../../Components/PlayerList';
+import CountdownTimer from '../../Components/CountdownTimer';
+import DiceResult from '../../Components/DiceResult';
+import DiceShaker from '../../Components/DiceShaker';
+import Toast from '../../Components/Toast';
 import '../../assets/CSS/ExGame.css';
 
 export default function Game() {

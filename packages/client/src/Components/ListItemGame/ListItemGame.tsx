@@ -1,5 +1,5 @@
-import ItemGame from "./ItemGame";
-import useBauCuaStore from "../../store/useBauCuaStore";
+import ItemGame from './ItemGame';
+import useBauCuaStore from '../../store/useBauCuaStore';
 
 export default function ListItemGame() {
   const arrBet = useBauCuaStore((state) => state.arrBet);

@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { useAuthStore } from './store/useAuthStore';
 import Login from './Pages/Login';
-import Lobby from './pages/Lobby';
-import Room from './pages/Room';
-import Game from './pages/Game';
+import Lobby from './Pages/Lobby';
+import Room from './Pages/Room';
+import Game from './Pages/Game';
 
 interface RouteProps {
   children: React.ReactNode;

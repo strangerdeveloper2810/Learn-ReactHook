@@ -2,7 +2,7 @@ import type { Player, RoundResult } from '@baucua/shared';
 
 interface PlayerListProps {
   players: Player[];
-  myId: string;
+  myId?: string;
   roundResult?: RoundResult | null;
 }
 

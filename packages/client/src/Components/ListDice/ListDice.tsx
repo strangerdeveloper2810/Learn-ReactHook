@@ -1,6 +1,6 @@
-import { useCallback, useRef } from "react";
-import Dice from "./Dice";
-import useBauCuaStore from "../../store/useBauCuaStore";
+import { useCallback, useRef } from 'react';
+import Dice from './Dice';
+import useBauCuaStore from '../../store/useBauCuaStore';
 
 const SHAKE_DURATION = 3000;
 
@@ -10,7 +10,7 @@ export default function ListDice() {
   const isShaking = useBauCuaStore((state) => state.isShaking);
   const shakeDice = useBauCuaStore((state) => state.shakeDice);
   const revealDice = useBauCuaStore((state) => state.revealDice);
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleShake = useCallback(() => {
     shakeDice();
@@ -21,7 +21,7 @@ export default function ListDice() {
 
   const handlePlayMusic = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio("./media/2.mp3");
+      audioRef.current = new Audio('./media/2.mp3');
     }
     audioRef.current.currentTime = 0;
     audioRef.current.play();
@@ -48,21 +48,22 @@ export default function ListDice() {
         <div
           className={`absolute inset-0 rounded-full transition-all duration-700 ease-in-out flex items-center justify-center z-10 ${
             isRevealed
-              ? "opacity-0 scale-50 pointer-events-none"
-              : "opacity-100 scale-100"
+              ? 'opacity-0 scale-50 pointer-events-none'
+              : 'opacity-100 scale-100'
           }`}
           style={{
-            background: "radial-gradient(circle at 40% 35%, #c0392b, #922b21 50%, #641e16)",
+            background:
+              'radial-gradient(circle at 40% 35%, #c0392b, #922b21 50%, #641e16)',
             boxShadow: isShaking
-              ? "0 0 30px rgba(255, 165, 0, 0.6), inset 0 -4px 12px rgba(0,0,0,0.4)"
-              : "0 8px 24px rgba(0,0,0,0.4), inset 0 -4px 12px rgba(0,0,0,0.3)",
-            animation: isShaking ? "shake 0.15s infinite alternate" : "none",
+              ? '0 0 30px rgba(255, 165, 0, 0.6), inset 0 -4px 12px rgba(0,0,0,0.4)'
+              : '0 8px 24px rgba(0,0,0,0.4), inset 0 -4px 12px rgba(0,0,0,0.3)',
+            animation: isShaking ? 'shake 0.15s infinite alternate' : 'none',
           }}
         >
           <div className="text-center">
             <span className="text-4xl sm:text-5xl">🎲</span>
             <p className="text-white/80 text-xs sm:text-sm mt-1 tracking-wider">
-              {isShaking ? "Đang xốc..." : "Đặt cược đi!"}
+              {isShaking ? 'Đang xốc...' : 'Đặt cược đi!'}
             </p>
           </div>
         </div>
@@ -73,8 +74,8 @@ export default function ListDice() {
         <button
           className={`rounded-full text-base sm:text-xl px-5 sm:px-8 py-2 sm:py-3 shadow-lg transition-all font-bold border-2 tracking-wider ${
             isShaking
-              ? "bg-gray-400 border-gray-300/50 text-gray-200 cursor-not-allowed"
-              : "bg-amber-500 hover:bg-amber-400 active:scale-95 text-white border-amber-300/50 cursor-pointer"
+              ? 'bg-gray-400 border-gray-300/50 text-gray-200 cursor-not-allowed'
+              : 'bg-amber-500 hover:bg-amber-400 active:scale-95 text-white border-amber-300/50 cursor-pointer'
           }`}
           onClick={handleShake}
           disabled={isShaking}

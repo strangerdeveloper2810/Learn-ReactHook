@@ -1,8 +1,18 @@
-import { useState } from "react";
-import useBauCuaStore from "../../../store/useBauCuaStore";
-import { useSpring, animated } from "@react-spring/web";
+import { useState } from 'react';
+import useBauCuaStore from '../../../store/useBauCuaStore';
+import { useSpring, animated } from '@react-spring/web';
 
-export default function ItemGame({ item }) {
+interface BetItem {
+  id: string;
+  img: string;
+  scoreBet: number;
+}
+
+interface ItemGameProps {
+  item: BetItem;
+}
+
+export default function ItemGame({ item }: ItemGameProps) {
   const [toggle, setToggle] = useState(true);
   const betScore = useBauCuaStore((s) => s.betScore);
   const isShaking = useBauCuaStore((s) => s.isShaking);
@@ -13,7 +23,7 @@ export default function ItemGame({ item }) {
     config: { duration: 1000 },
   });
 
-  const handleBet = (number) => {
+  const handleBet = (number: number) => {
     setToggle(!toggle);
     betScore(item, number);
   };
@@ -38,8 +48,8 @@ export default function ItemGame({ item }) {
         <animated.button
           className={`text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-colors text-base sm:text-lg font-bold leading-none ${
             isShaking
-              ? "bg-gray-500 cursor-not-allowed"
-              : "bg-red-500 hover:bg-red-400 cursor-pointer"
+              ? 'bg-gray-500 cursor-not-allowed'
+              : 'bg-red-500 hover:bg-red-400 cursor-pointer'
           }`}
           style={btnStyle}
           onClick={() => handleBet(1)}
@@ -53,8 +63,8 @@ export default function ItemGame({ item }) {
         <animated.button
           className={`text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-colors text-base sm:text-lg font-bold leading-none ${
             isShaking
-              ? "bg-gray-500 cursor-not-allowed"
-              : "bg-red-500 hover:bg-red-400 cursor-pointer"
+              ? 'bg-gray-500 cursor-not-allowed'
+              : 'bg-red-500 hover:bg-red-400 cursor-pointer'
           }`}
           style={btnStyle}
           onClick={() => handleBet(-1)}

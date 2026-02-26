@@ -1,10 +1,29 @@
-import { useEffect } from "react";
-import useBauCuaStore from "../../store/useBauCuaStore";
+import { useEffect } from 'react';
+import useBauCuaStore from '../../store/useBauCuaStore';
 
-const CONFIG = {
-  win: { icon: "🎉", label: "Thắng", bg: "bg-emerald-500", border: "border-emerald-300" },
-  lose: { icon: "💸", label: "Thua", bg: "bg-red-500", border: "border-red-300" },
-  draw: { icon: "🤝", label: "Huề", bg: "bg-amber-500", border: "border-amber-300" },
+type ResultType = 'win' | 'lose' | 'draw';
+
+interface ResultConfig {
+  icon: string;
+  label: string;
+  bg: string;
+  border: string;
+}
+
+const CONFIG: Record<ResultType, ResultConfig> = {
+  win: {
+    icon: '🎉',
+    label: 'Thắng',
+    bg: 'bg-emerald-500',
+    border: 'border-emerald-300',
+  },
+  lose: { icon: '💸', label: 'Thua', bg: 'bg-red-500', border: 'border-red-300' },
+  draw: {
+    icon: '🤝',
+    label: 'Huề',
+    bg: 'bg-amber-500',
+    border: 'border-amber-300',
+  },
 };
 
 export default function Toast() {
@@ -30,8 +49,8 @@ export default function Toast() {
         <div className="text-white">
           <p className="font-bold text-lg leading-tight">{label}</p>
           <p className="text-sm text-white/80">
-            {roundResult.type === "draw"
-              ? "Không ăn không thua!"
+            {roundResult.type === 'draw'
+              ? 'Không ăn không thua!'
               : `${roundResult.amount.toLocaleString()}$`}
           </p>
         </div>

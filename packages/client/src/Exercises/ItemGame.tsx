@@ -1,25 +1,35 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { betScoreActions } from "../redux/actions/BauCuaActions";
-import { useSpring, animated } from "@react-spring/web";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { betScoreActions } from '../redux/actions/BauCuaActions';
+import { useSpring, animated } from '@react-spring/web';
 
-export default function ItemGame(props) {
-  const [state, toogle] = useState(true);
-  const { item } = props;
+interface BetItem {
+  id: string;
+  img: string;
+  scoreBet: number;
+}
+
+interface ItemGameProps {
+  item: BetItem;
+}
+
+export default function ItemGame({ item }: ItemGameProps) {
+  const [toggle, setToggle] = useState(true);
   const dispatch = useDispatch();
-  const handleBetScore = (item, number) => {
-    dispatch(betScoreActions(item, number));
+
+  const handleBetScore = (betItem: BetItem, number: number) => {
+    dispatch(betScoreActions(betItem, number));
   };
 
   const { x } = useSpring({
     from: { x: 0 },
-    x: state ? 1 : 0,
+    x: toggle ? 1 : 0,
     config: { duration: 1000 },
   });
 
   return (
     <div className="mt-3 ms-3">
-      <img src={item.img} alt={item.ma} className="w-75" />
+      <img src={item.img} alt={item.id} className="w-75" />
 
       <div className="bg-success mt-2 pb-2 text-center rounded-3 w-75">
         <animated.button
@@ -32,7 +42,7 @@ export default function ItemGame(props) {
             }),
           }}
           onClick={() => {
-            toogle(!state);
+            setToggle(!toggle);
             handleBetScore(item, 1);
           }}
         >
@@ -49,7 +59,7 @@ export default function ItemGame(props) {
             }),
           }}
           onClick={() => {
-            toogle(!state);
+            setToggle(!toggle);
             handleBetScore(item, -1);
           }}
         >

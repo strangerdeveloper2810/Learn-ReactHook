@@ -1,41 +1,74 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-const STORAGE_KEY = "baucua_score";
+const STORAGE_KEY = 'baucua_score';
 
-const getSavedScore = () => {
+interface BetItem {
+  id: string;
+  img: string;
+  scoreBet: number;
+}
+
+interface DiceItem {
+  id: string;
+  img: string;
+}
+
+type ResultType = 'win' | 'lose' | 'draw';
+
+interface RoundResult {
+  amount: number;
+  type: ResultType;
+}
+
+interface BauCuaState {
+  arrBet: BetItem[];
+  totalScore: number;
+  diceRound: number;
+  isRevealed: boolean;
+  isShaking: boolean;
+  arrDice: DiceItem[];
+  roundResult: RoundResult | null;
+  betScore: (itemClick: BetItem, number: number) => void;
+  shakeDice: () => void;
+  revealDice: () => void;
+  clearResult: () => void;
+  playAgain: () => void;
+}
+
+const getSavedScore = (): number => {
   const saved = localStorage.getItem(STORAGE_KEY);
   return saved ? Number(saved) : 1000;
 };
 
-const saveScore = (score) => {
-  localStorage.setItem(STORAGE_KEY, score);
+const saveScore = (score: number): void => {
+  localStorage.setItem(STORAGE_KEY, String(score));
 };
 
 const initialState = {
   arrBet: [
-    { id: "ga", img: "./gameBauCua/ga.png", scoreBet: 0 },
-    { id: "bau", img: "./gameBauCua/bau.png", scoreBet: 0 },
-    { id: "ca", img: "./gameBauCua/ca.png", scoreBet: 0 },
-    { id: "nai", img: "./gameBauCua/nai.png", scoreBet: 0 },
-    { id: "cua", img: "./gameBauCua/cua.png", scoreBet: 0 },
-    { id: "tom", img: "./gameBauCua/tom.png", scoreBet: 0 },
+    { id: 'ga', img: './gameBauCua/ga.png', scoreBet: 0 },
+    { id: 'bau', img: './gameBauCua/bau.png', scoreBet: 0 },
+    { id: 'ca', img: './gameBauCua/ca.png', scoreBet: 0 },
+    { id: 'nai', img: './gameBauCua/nai.png', scoreBet: 0 },
+    { id: 'cua', img: './gameBauCua/cua.png', scoreBet: 0 },
+    { id: 'tom', img: './gameBauCua/tom.png', scoreBet: 0 },
   ],
   totalScore: getSavedScore(),
   diceRound: 0,
   isRevealed: false,
   isShaking: false,
   arrDice: [
-    { id: "nai", img: "./gameBauCua/nai.png" },
-    { id: "cua", img: "./gameBauCua/cua.png" },
-    { id: "tom", img: "./gameBauCua/tom.png" },
+    { id: 'nai', img: './gameBauCua/nai.png' },
+    { id: 'cua', img: './gameBauCua/cua.png' },
+    { id: 'tom', img: './gameBauCua/tom.png' },
   ],
   roundResult: null,
 };
 
-const useBauCuaStore = create((set, get) => ({
+const useBauCuaStore = create<BauCuaState>((set, get) => ({
   ...initialState,
 
-  betScore: (itemClick, number) => {
+  betScore: (itemClick: BetItem, number: number) => {
     const { isShaking } = get();
     if (isShaking) return;
 
@@ -52,9 +85,13 @@ const useBauCuaStore = create((set, get) => ({
         return item;
       });
 
-      const diff = number === 1 && state.totalScore > 0 ? -100
-        : number === -1 && state.arrBet.find((i) => i.id === itemClick.id)?.scoreBet > 0 ? 100
-        : 0;
+      const currentBet = state.arrBet.find((i) => i.id === itemClick.id);
+      const diff =
+        number === 1 && state.totalScore > 0
+          ? -100
+          : number === -1 && currentBet && currentBet.scoreBet > 0
+            ? 100
+            : 0;
 
       const newScore = state.totalScore + diff;
       saveScore(newScore);
@@ -68,7 +105,7 @@ const useBauCuaStore = create((set, get) => ({
     if (isShaking) return;
 
     set((state) => {
-      const arrDiceRandom = [];
+      const arrDiceRandom: DiceItem[] = [];
       for (let i = 0; i < 3; i++) {
         const numberRandom = Math.floor(Math.random() * 6);
         arrDiceRandom.push(state.arrBet[numberRandom]);
@@ -103,14 +140,24 @@ const useBauCuaStore = create((set, get) => ({
       });
 
       const net = totalScore - scoreBefore;
-      const roundResult = totalBet === 0
-        ? null
-        : { amount: Math.abs(net), type: net > 0 ? "win" : net < 0 ? "lose" : "draw" };
+      const roundResult: RoundResult | null =
+        totalBet === 0
+          ? null
+          : {
+              amount: Math.abs(net),
+              type: net > 0 ? 'win' : net < 0 ? 'lose' : 'draw',
+            };
 
       const arrBet = state.arrBet.map((item) => ({ ...item, scoreBet: 0 }));
 
       saveScore(totalScore);
-      return { arrBet, totalScore, isRevealed: true, isShaking: false, roundResult };
+      return {
+        arrBet,
+        totalScore,
+        isRevealed: true,
+        isShaking: false,
+        roundResult,
+      };
     });
   },
 

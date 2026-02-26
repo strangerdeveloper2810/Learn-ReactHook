@@ -3,7 +3,7 @@ import { FACE_IMAGES, DICE_FACE_LABELS } from '@baucua/shared';
 
 interface DiceResultProps {
   result: RoundResult;
-  myPlayerId: string;
+  myPlayerId?: string;
 }
 
 export default function DiceResult({ result, myPlayerId }: DiceResultProps) {

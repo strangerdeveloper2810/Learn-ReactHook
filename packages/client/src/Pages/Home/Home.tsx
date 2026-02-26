@@ -1,8 +1,8 @@
-import "../../assets/CSS/ExGame.css";
-import GameScore from "../../Components/GameScore";
-import ListItemGame from "../../Components/ListItemGame";
-import ListDice from "../../Components/ListDice";
-import Toast from "../../Components/Toast";
+import '../../assets/CSS/ExGame.css';
+import GameScore from '../../Components/GameScore';
+import ListItemGame from '../../Components/ListItemGame';
+import ListDice from '../../Components/ListDice';
+import Toast from '../../Components/Toast';
 
 const Home = () => {
   return (

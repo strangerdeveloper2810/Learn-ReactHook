@@ -1,8 +1,17 @@
-import { useEffect } from "react";
-import { animated, useSpring } from "@react-spring/web";
-import useBauCuaStore from "../../../store/useBauCuaStore";
+import { useEffect } from 'react';
+import { animated, useSpring } from '@react-spring/web';
+import useBauCuaStore from '../../../store/useBauCuaStore';
 
-export default function Dice({ diceItem }) {
+interface DiceItem {
+  id: string;
+  img: string;
+}
+
+interface DiceProps {
+  diceItem: DiceItem;
+}
+
+export default function Dice({ diceItem }: DiceProps) {
   const diceRound = useBauCuaStore((state) => state.diceRound);
 
   const [propsDice, api] = useSpring(() => ({

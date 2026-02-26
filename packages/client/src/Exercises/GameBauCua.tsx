@@ -1,11 +1,9 @@
-import React from "react";
-import GameScore from "./GameScore";
-import ListDice from "./ListDice";
-import ListItemGame from "./ListItemGame";
-import "./assets/CSS/ExGame.css";
+import GameScore from './GameScore';
+import ListDice from './ListDice';
+import ListItemGame from './ListItemGame';
+import './assets/CSS/ExGame.css';
 
-
-export default function GameBauCua(props) {
+export default function GameBauCua() {
   return (
     <div className="container-fluid" id="exGame">
       <GameScore />
@@ -18,7 +16,6 @@ export default function GameBauCua(props) {
           <ListDice />
         </div>
       </div>
-     
     </div>
   );
 }
