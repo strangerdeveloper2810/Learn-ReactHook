@@ -3,13 +3,7 @@ const { CopyRspackPlugin, HtmlRspackPlugin, DefinePlugin } = require("@rspack/co
 const ReactRefreshPlugin = require("@rspack/plugin-react-refresh");
 
 const isProduction = process.env.NODE_ENV === "production";
-const isVercel = process.env.VERCEL === "1";
 const SOCKET_URL = process.env.SOCKET_URL || "http://localhost:3001";
-
-// On Vercel, output to root /build folder for easier detection
-const outputPath = isVercel
-  ? path.resolve(__dirname, "../../build")
-  : path.resolve(__dirname, "build");
 
 /** @type {import('@rspack/core').Configuration} */
 module.exports = {
@@ -17,7 +11,7 @@ module.exports = {
   devtool: isProduction ? false : "eval-cheap-module-source-map",
   entry: "./src/index.tsx",
   output: {
-    path: outputPath,
+    path: path.resolve(__dirname, "build"),
     filename: isProduction ? "static/js/[name].[contenthash:8].js" : "static/js/[name].js",
     publicPath: "/",
     clean: true,
