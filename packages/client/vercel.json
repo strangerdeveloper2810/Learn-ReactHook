@@ -3,5 +3,8 @@
   "installCommand": "cd ../.. && pnpm install",
   "buildCommand": "NODE_ENV=production npx rspack build",
   "outputDirectory": "build",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
