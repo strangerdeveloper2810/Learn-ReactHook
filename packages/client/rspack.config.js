@@ -3,7 +3,7 @@ const { CopyRspackPlugin, HtmlRspackPlugin, DefinePlugin } = require("@rspack/co
 const ReactRefreshPlugin = require("@rspack/plugin-react-refresh");
 
 const isProduction = process.env.NODE_ENV === "production";
-const SOCKET_URL = process.env.SOCKET_URL || "http://localhost:3001";
+const SOCKET_URL = process.env.SOCKET_URL || "http://localhost:5000";
 
 /** @type {import('@rspack/core').Configuration} */
 module.exports = {

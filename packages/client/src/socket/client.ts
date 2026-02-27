@@ -2,7 +2,7 @@ import { io, Socket } from 'socket.io-client';
 import type { ClientToServerEvents, ServerToClientEvents } from '@baucua/shared';
 
 declare const __SOCKET_URL__: string;
-const SERVER_URL = typeof __SOCKET_URL__ !== 'undefined' ? __SOCKET_URL__ : 'http://localhost:3001';
+const SERVER_URL = typeof __SOCKET_URL__ !== 'undefined' ? __SOCKET_URL__ : 'http://localhost:5000';
 
 export type GameSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 

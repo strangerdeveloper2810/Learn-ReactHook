@@ -1,5 +1,5 @@
-import type { BetItem, RoundResult } from './game';
-import type { Player, Room } from './room';
+import type { BetItem, RoundResult } from './game.js';
+import type { Player, Room } from './room.js';
 
 // ===== Client → Server Events =====
 export interface ClientToServerEvents {

@@ -1,10 +1,10 @@
 // Types
-export * from './types/game';
-export * from './types/room';
-export * from './types/socket';
+export * from './types/game.js';
+export * from './types/room.js';
+export * from './types/socket.js';
 
 // Constants
-export * from './constants/game';
+export * from './constants/game.js';
 
 // Logic
-export * from './logic/score';
+export * from './logic/score.js';

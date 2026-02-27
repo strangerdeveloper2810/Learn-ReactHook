@@ -1,4 +1,4 @@
-import type { BetItem } from './game';
+import type { BetItem } from './game.js';
 
 // Player trong phòng
 export interface Player {

@@ -4,6 +4,9 @@
   "buildCommand": "NODE_ENV=production npx rspack build",
   "outputDirectory": "build",
   "framework": null,
+  "env": {
+    "SOCKET_URL": "https://api-baucua.freeddns.org"
+  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
